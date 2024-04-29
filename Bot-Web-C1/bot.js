@@ -24,7 +24,7 @@ const handleMessage = async (ctx) => {
   // Verifica se estamos dentro do horário comercial
   if (isBusinessHours()) {
     // Responde com uma mensagem padrão e um link para mais informações
-    ctx.reply('Olá! Por aqui você pode encontrar mais informações em: https://faesa.br');
+    ctx.reply('Olá! Entre em contato no link ao lado para encontrar mais detalhes sobre: https://faesa.br');
   } else {
     // Se estivermos fora do horário comercial, pede o e-mail do usuário
     ctx.reply('Desculpe, estamos fora do horário comercial (09:00 às 18:00) no momento. Por favor, deixe seu e-mail para entrarmos em contato posteriormente.');
@@ -44,11 +44,11 @@ emailScene.on('text', async (ctx) => {
   if (email.includes('@')) {
     // Se for válido, salva no banco de dados e responde com uma mensagem de agradecimento
     await prisma.email.create({ data: { email } });
-    ctx.reply('Obrigado! Entraremos logo logo entraremos em contato com você.');
+    ctx.reply('Obrigado! Logo logo entraremos em contato com você.');
     ctx.scene.leave();
   } else {
     // Se não for válido, pede um e-mail válido
-    ctx.reply('Por favor, forneça um endereço de e-mail válido.');
+    ctx.reply('Por favor, envie um e-mail válido.');
   }
 });
 
@@ -66,4 +66,4 @@ bot.on('text', handleMessage);
 
 // Inicia o bot
 bot.launch();
-console.log('Bot started');
+console.log('Bot iniciado');
